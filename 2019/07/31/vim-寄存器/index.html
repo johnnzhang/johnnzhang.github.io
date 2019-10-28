@@ -374,6 +374,7 @@
 </blockquote>
 <p>在使用vim时，由于vim提供了寄存器暂存了复制和剪切的内容，我们在进行上述的第<strong>3</strong>步时，就不再需要选中<strong>AAA</strong>，从而直接通过命令获取寄存器中的内容，进行使用。</p>
 <a id="more"></a>
+
 <h1 id="Vim-寄存器"><a href="#Vim-寄存器" class="headerlink" title="Vim 寄存器"></a>Vim 寄存器</h1><p>一般的文本编辑器通常与系统共用一个系统寄存器（剪贴板），当任意一方修改系统寄存器时，编辑器和操作系统都会受到影响。而Vim则提供了多个寄存器，保存不同的数据，从而保证了数据的安全性以及良好的可用性。</p>
 <h1 id="Vim-寄存器基本操作"><a href="#Vim-寄存器基本操作" class="headerlink" title="Vim 寄存器基本操作"></a>Vim 寄存器基本操作</h1><h2 id="查看寄存器"><a href="#查看寄存器" class="headerlink" title="查看寄存器"></a>查看寄存器</h2><ul>
 <li><p>查看所有寄存器及其值</p>
@@ -381,6 +382,7 @@
 </li>
 <li><p>查看指定寄存器及其值</p>
   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:reg " 寄存器名</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 <h2 id="使用寄存器的值"><a href="#使用寄存器的值" class="headerlink" title="使用寄存器的值"></a>使用寄存器的值</h2><ul>
@@ -389,13 +391,16 @@
 </li>
 <li><p>INSERT 模式下</p>
   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;ctrl+r&gt; 寄存器名</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 <h1 id="Vim-寄存器分类"><a href="#Vim-寄存器分类" class="headerlink" title="Vim 寄存器分类"></a>Vim 寄存器分类</h1><h2 id="默认（无名）寄存器"><a href="#默认（无名）寄存器" class="headerlink" title="默认（无名）寄存器"></a>默认（无名）寄存器</h2><p>寄存器名：<strong>“</strong></p>
 <p>该寄存器是Vim默认的寄存器，Vim的所有复制和修改操作，例如x，s，d，c，y，均会将数据复制到该寄存器</p>
 <h2 id="字母寄存器"><a href="#字母寄存器" class="headerlink" title="字母寄存器"></a>字母寄存器</h2><p>寄存器名：a-z,A-Z</p>
 <p>该类寄存器只能使用一位英文字母。大写字母A-Z寄存器会将内容合并到对应的小写字母内容后面。</p>
-<p>使用时需要指定具体的寄存器名称。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">:y n        # 复制当前行到寄存器 "n</span><br><span class="line">:5,10y n    # 复制5-10行到寄存器 "n</span><br><span class="line">:d n        # 删除当前行，并将内容存至寄存器 "n</span><br><span class="line">:pu n       # 粘贴寄存器 "n 的内容至光标处</span><br><span class="line"></span><br><span class="line">"ayy        # 复制当前行到寄存器 "a</span><br><span class="line">"a3yy       # 复制当前三行至寄存器 "a</span><br><span class="line">"ap         # 粘贴寄存器 "a 的内容</span><br><span class="line">"ad2l       # 向右删除2个字符并将内容存至寄存器 "a</span><br><span class="line">"ap         # 粘贴寄存器 "a 中内容</span><br><span class="line">"a3dd       # 删除当前三行并将内容存至寄存器 "a 中  </span><br><span class="line">"adf.       # 删除当前位置到 . 并将内容存至寄存器 “a 中</span><br></pre></td></tr></table></figure></p>
+<p>使用时需要指定具体的寄存器名称。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">:y n        # 复制当前行到寄存器 "n</span><br><span class="line">:5,10y n    # 复制5-10行到寄存器 "n</span><br><span class="line">:d n        # 删除当前行，并将内容存至寄存器 "n</span><br><span class="line">:pu n       # 粘贴寄存器 "n 的内容至光标处</span><br><span class="line"></span><br><span class="line">"ayy        # 复制当前行到寄存器 "a</span><br><span class="line">"a3yy       # 复制当前三行至寄存器 "a</span><br><span class="line">"ap         # 粘贴寄存器 "a 的内容</span><br><span class="line">"ad2l       # 向右删除2个字符并将内容存至寄存器 "a</span><br><span class="line">"ap         # 粘贴寄存器 "a 中内容</span><br><span class="line">"a3dd       # 删除当前三行并将内容存至寄存器 "a 中  </span><br><span class="line">"adf.       # 删除当前位置到 . 并将内容存至寄存器 “a 中</span><br></pre></td></tr></table></figure>
+
 <h2 id="数字寄存器"><a href="#数字寄存器" class="headerlink" title="数字寄存器"></a>数字寄存器</h2><p>寄存器名：<strong>0-9</strong></p>
 <ol>
 <li><p>复制专用寄存器 “0</p>
@@ -411,7 +416,7 @@
 <p>使用该寄存器，则删除内容不会影响其他寄存器，例如寄存器 “1-“9，”-。进入黑洞寄存器的内容会直接消失。</p>
 <h2 id="系统剪切板"><a href="#系统剪切板" class="headerlink" title="系统剪切板"></a>系统剪切板</h2><p>寄存器名: <strong>*</strong> 或 <strong>+</strong></p>
 <blockquote>
-<p>Under Windows, the <em> and + registers are equivalent.<br>For X11 systems, though, they differ. For X11 systems, </em> is the selection, and + is the cut buffer (like clipboard).</p>
+<p>Under Windows, the * and + registers are equivalent.<br>For X11 systems, though, they differ. For X11 systems, * is the selection, and + is the cut buffer (like clipboard).</p>
 <ul>
 <li>Text selected, or otherwise highlighted in one X11 app is available in the selection buffer.</li>
 <li>Text explicitly copied or cut is available in the cut buffer.</li>
@@ -547,7 +552,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -569,7 +574,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -609,7 +614,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vim-寄存器"><span class="nav-number">1.</span> <span class="nav-text">Vim 寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vim-寄存器基本操作"><span class="nav-number">2.</span> <span class="nav-text">Vim 寄存器基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看寄存器"><span class="nav-number">2.1.</span> <span class="nav-text">查看寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用寄存器的值"><span class="nav-number">2.2.</span> <span class="nav-text">使用寄存器的值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vim-寄存器分类"><span class="nav-number">3.</span> <span class="nav-text">Vim 寄存器分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#默认（无名）寄存器"><span class="nav-number">3.1.</span> <span class="nav-text">默认（无名）寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字母寄存器"><span class="nav-number">3.2.</span> <span class="nav-text">字母寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字寄存器"><span class="nav-number">3.3.</span> <span class="nav-text">数字寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#短删除寄存器"><span class="nav-number">3.4.</span> <span class="nav-text">短删除寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#黑洞寄存器"><span class="nav-number">3.5.</span> <span class="nav-text">黑洞寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统剪切板"><span class="nav-number">3.6.</span> <span class="nav-text">系统剪切板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表达式寄存器"><span class="nav-number">3.7.</span> <span class="nav-text">表达式寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他寄存器"><span class="nav-number">3.8.</span> <span class="nav-text">其他寄存器</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vim-寄存器"><span class="nav-text">Vim 寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vim-寄存器基本操作"><span class="nav-text">Vim 寄存器基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看寄存器"><span class="nav-text">查看寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用寄存器的值"><span class="nav-text">使用寄存器的值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vim-寄存器分类"><span class="nav-text">Vim 寄存器分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#默认（无名）寄存器"><span class="nav-text">默认（无名）寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字母寄存器"><span class="nav-text">字母寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字寄存器"><span class="nav-text">数字寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#短删除寄存器"><span class="nav-text">短删除寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#黑洞寄存器"><span class="nav-text">黑洞寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统剪切板"><span class="nav-text">系统剪切板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表达式寄存器"><span class="nav-text">表达式寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他寄存器"><span class="nav-text">其他寄存器</span></a></li></ol></li></ol></div>
             
 
           </div>

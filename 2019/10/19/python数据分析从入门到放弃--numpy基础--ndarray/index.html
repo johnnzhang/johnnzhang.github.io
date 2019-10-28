@@ -364,40 +364,43 @@
       
 
       
-        <p>ndarray 是一个通用的<strong>同构（元素具有相同类型）</strong>数据多维容器，具有矢量算数运算和复杂广播能力的快速且节省空间的多维数组。<br><a id="more"></a></p>
+        <p>ndarray 是一个通用的<strong>同构（元素具有相同类型）</strong>数据多维容器，具有矢量算数运算和复杂广播能力的快速且节省空间的多维数组。</p>
+<a id="more"></a>
+
 <h1 id="创建ndarray"><a href="#创建ndarray" class="headerlink" title="创建ndarray"></a>创建ndarray</h1><h2 id="直接使用列表赋值"><a href="#直接使用列表赋值" class="headerlink" title="直接使用列表赋值"></a>直接使用列表赋值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data1 = [<span class="number">6</span>, <span class="number">7.5</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">arr1 = np.array(data1)</span><br><span class="line">arr1</span><br></pre></td></tr></table></figure>
-<pre><code>array([6. , 7.5, 8. , 0. , 1. ])
-</code></pre><h2 id="嵌套列表会被转换成多维数组"><a href="#嵌套列表会被转换成多维数组" class="headerlink" title="嵌套列表会被转换成多维数组"></a>嵌套列表会被转换成多维数组</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data2 = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]]</span><br><span class="line">arr2 = np.array(data2)</span><br><span class="line">arr2</span><br></pre></td></tr></table></figure>
+
+<pre><code>array([6. , 7.5, 8. , 0. , 1. ])</code></pre><h2 id="嵌套列表会被转换成多维数组"><a href="#嵌套列表会被转换成多维数组" class="headerlink" title="嵌套列表会被转换成多维数组"></a>嵌套列表会被转换成多维数组</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data2 = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]]</span><br><span class="line">arr2 = np.array(data2)</span><br><span class="line">arr2</span><br></pre></td></tr></table></figure>
+
 <pre><code>array([[1, 2, 3, 4],
-       [5, 6, 7, 8]])
-</code></pre><p>每个np.array都有shape属性和dtype属性。<br>shape属性是表示各维度大小的元组，dtype是表示数组中数据类型的对象。</p>
+       [5, 6, 7, 8]])</code></pre><p>每个np.array都有shape属性和dtype属性。<br>shape属性是表示各维度大小的元组，dtype是表示数组中数据类型的对象。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr2.shape, arr2.dtype</span><br></pre></td></tr></table></figure>
-<pre><code>((2, 4), dtype(&apos;int32&apos;))
-</code></pre><p>在创建数组时，若没有显式说明，则np.array会尝试为新建的数组推断出一个较为合适的类型。</p>
+
+<pre><code>((2, 4), dtype(&apos;int32&apos;))</code></pre><p>在创建数组时，若没有显式说明，则np.array会尝试为新建的数组推断出一个较为合适的类型。</p>
 <h2 id="通过函数创建"><a href="#通过函数创建" class="headerlink" title="通过函数创建"></a>通过函数创建</h2><ul>
 <li><strong>ones, ones_like</strong>：ones根据指定的形状和dtype创建一个全1数组，ones_like以另一个数组为参数，并根据其形状和dtype创建一个全1数组</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.ones(<span class="number">10</span>), np.ones_like(arr2)</span><br></pre></td></tr></table></figure>
+
 <pre><code>(array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), array([[1, 1, 1, 1],
-        [1, 1, 1, 1]]))
-</code></pre><ul>
+        [1, 1, 1, 1]]))</code></pre><ul>
 <li><strong>zeros, zeros_like</strong>: 类似于one和ones_like，产生全0的数组</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.zeros(<span class="number">10</span>), np.zeros_like(arr2)</span><br></pre></td></tr></table></figure>
+
 <pre><code>(array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]), array([[0, 0, 0, 0],
-        [0, 0, 0, 0]]))
-</code></pre><ul>
+        [0, 0, 0, 0]]))</code></pre><ul>
 <li><strong>empty, empty_like</strong>: 类似于ones, ones_like，只创建数组，但不填充任何值</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.empty(<span class="number">10</span>), np.empty_like(arr2)</span><br></pre></td></tr></table></figure>
+
 <pre><code>(array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]),
  array([[ 725021616,        370, 1142649184,      32762],
         [1142649312,      32762, 1142649440,      32762]]))
 
 
 
-注意：empty不一定会返回全0的数组
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help(np.empty)</span><br></pre></td></tr></table></figure>
+注意：empty不一定会返回全0的数组</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help(np.empty)</span><br></pre></td></tr></table></figure>
+
 <pre><code>Help on built-in function empty in module numpy:
 
 empty(...)
@@ -446,24 +449,23 @@ empty(...)
 
     &gt;&gt;&gt; np.empty([2, 2], dtype=int)
     array([[-1073741821, -1067949133],
-           [  496041986,    19249760]])                     #uninitialized
-</code></pre><ul>
+           [  496041986,    19249760]])                     #uninitialized</code></pre><ul>
 <li><strong>np.arange</strong>是python内置函数range的数组版</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.arange(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-</code></pre><ul>
+
+<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</code></pre><ul>
 <li><strong>eye, identity</strong>创建n*n的单位阵</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.eye(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
 <pre><code>array([[1., 0., 0.],
        [0., 1., 0.],
-       [0., 0., 1.]])
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.identity(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+       [0., 0., 1.]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.identity(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
 <pre><code>array([[1., 0., 0.],
        [0., 1., 0.],
-       [0., 0., 1.]])
-</code></pre>
+       [0., 0., 1.]])</code></pre>
       
     </div>
     
@@ -508,6 +510,10 @@ empty(...)
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/27/Effective Python：用Pythonic方式思考/" rel="prev" title="Effective Python：用Pythonic方式来思考">
+                Effective Python：用Pythonic方式来思考 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -586,7 +592,7 @@ empty(...)
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -608,7 +614,7 @@ empty(...)
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -648,7 +654,7 @@ empty(...)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建ndarray"><span class="nav-number">1.</span> <span class="nav-text">创建ndarray</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#直接使用列表赋值"><span class="nav-number">1.1.</span> <span class="nav-text">直接使用列表赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套列表会被转换成多维数组"><span class="nav-number">1.2.</span> <span class="nav-text">嵌套列表会被转换成多维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过函数创建"><span class="nav-number">1.3.</span> <span class="nav-text">通过函数创建</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建ndarray"><span class="nav-text">创建ndarray</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#直接使用列表赋值"><span class="nav-text">直接使用列表赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套列表会被转换成多维数组"><span class="nav-text">嵌套列表会被转换成多维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过函数创建"><span class="nav-text">通过函数创建</span></a></li></ol></li></ol></div>
             
 
           </div>

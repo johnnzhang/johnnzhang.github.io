@@ -87,16 +87,16 @@
 <meta property="og:site_name" content="立早立早">
 <meta property="og:description" content="使用阿里云oss搭建个人博客图床。  hexo使用markdown格式来组织blog，markdown格式文件中图片均使用链接格式，因此我们需要一个“仓库”来存储我们的图片并产生链接供markdown使用。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/oss购买.png">
-<meta property="og:image" content="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/创建bucket.png">
-<meta property="og:image" content="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/PicGo配置.png">
-<meta property="og:image" content="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/oss存储区域.png">
-<meta property="og:image" content="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/PicGo上传.png">
+<meta property="og:image" content="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/oss%E8%B4%AD%E4%B9%B0.png">
+<meta property="og:image" content="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/%E5%88%9B%E5%BB%BAbucket.png">
+<meta property="og:image" content="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/PicGo%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/oss%E5%AD%98%E5%82%A8%E5%8C%BA%E5%9F%9F.png">
+<meta property="og:image" content="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/PicGo%E4%B8%8A%E4%BC%A0.png">
 <meta property="og:updated_time" content="2019-10-13T08:31:49.775Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用阿里云oss搭建图床">
 <meta name="twitter:description" content="使用阿里云oss搭建个人博客图床。  hexo使用markdown格式来组织blog，markdown格式文件中图片均使用链接格式，因此我们需要一个“仓库”来存储我们的图片并产生链接供markdown使用。">
-<meta name="twitter:image" content="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/oss购买.png">
+<meta name="twitter:image" content="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/oss%E8%B4%AD%E4%B9%B0.png">
 
 
 
@@ -375,6 +375,7 @@
 <p>hexo使用markdown格式来组织blog，markdown格式文件中图片均使用链接格式，因此我们需要一个“仓库”来存储我们的图片并产生链接供markdown使用。</p>
 </blockquote>
 <a id="more"></a>
+
 <h1 id="为什么选用阿里云？"><a href="#为什么选用阿里云？" class="headerlink" title="为什么选用阿里云？"></a>为什么选用阿里云？</h1><ol>
 <li>之前有考虑使用七牛云存储，但是七牛云存储提供的测试域名只能使用一个月，绑定自己的域名则需要icp备案和公安备案，感觉有点麻烦，所以弃用；</li>
 <li>使用诸如微博、简书等其他应用上传图片再引用，可能会有限流、压缩图片的弊端；</li>
@@ -384,18 +385,18 @@
 <li><p>开通阿里云oss服务</p>
 <ul>
 <li>存储包选择包月服务，（地域尽量和自己的ecs服务器选择同一区域，因为通过ecs云服务器下载oss数据免费）</li>
-<li>由于个人博客访问量较少，流量包可选择按量计费，即不需要购买流量包。<br><img src="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/oss购买.png" alt></li>
+<li>由于个人博客访问量较少，流量包可选择按量计费，即不需要购买流量包。<br><img src="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/oss%E8%B4%AD%E4%B9%B0.png" alt></li>
 </ul>
 </li>
-<li><p>阿里云控制台新建Bucket,读写权限选择公共读<br> <img src="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/创建bucket.png" alt></p>
+<li><p>阿里云控制台新建Bucket,读写权限选择公共读<br> <img src="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/%E5%88%9B%E5%BB%BAbucket.png" alt></p>
 </li>
 <li><p>使用PicGO管理图床</p>
 <ul>
-<li>PicGo配置<br><img src="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/PicGo配置.png" alt><br>其中KeyId, KeySecret分别为阿里云控制台获取的AccessKey Id 和 AccessKey Secret;存储空间名为新建的Bucket名称，存储区域为阿里云控制台的<em>EndPoint（地域节点）</em>中的前缀。<br><img src="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/oss存储区域.png" alt></li>
-<li>上传：直接将图片拖到PicGo上传去即可，会自动复制对应格式链接，再markdown中直接引用即可。<br><img src="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/PicGo上传.png" alt></li>
+<li>PicGo配置<br><img src="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/PicGo%E9%85%8D%E7%BD%AE.png" alt><br>其中KeyId, KeySecret分别为阿里云控制台获取的AccessKey Id 和 AccessKey Secret;存储空间名为新建的Bucket名称，存储区域为阿里云控制台的<em>EndPoint（地域节点）</em>中的前缀。<br><img src="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/oss%E5%AD%98%E5%82%A8%E5%8C%BA%E5%9F%9F.png" alt></li>
+<li>上传：直接将图片拖到PicGo上传去即可，会自动复制对应格式链接，再markdown中直接引用即可。<br><img src="https://blog-image-hosting.oss-cn-shenzhen.aliyuncs.com/blog/PicGo%E4%B8%8A%E4%BC%A0.png" alt></li>
 </ul>
 </li>
-<li><p>亦可选用阿里云自带的OSS Browser进行管理：<br><a href="https://github.com/aliyun/oss-browser/blob/master/all-releases.md?spm=5176.8465980.0.0.17301450BVBBTg&amp;file=all-releases.md" target="_blank" rel="noopener">OSS Browser下载地址</a></p>
+<li><p>亦可选用阿里云自带的OSS Browser进行管理：<br><a href="https://github.com/aliyun/oss-browser/blob/master/all-releases.md?spm=5176.8465980.0.0.17301450BVBBTg&file=all-releases.md" target="_blank" rel="noopener">OSS Browser下载地址</a></p>
 </li>
 </ol>
 
@@ -521,7 +522,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -543,7 +544,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -583,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么选用阿里云？"><span class="nav-number">1.</span> <span class="nav-text">为什么选用阿里云？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#步骤"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么选用阿里云？"><span class="nav-text">为什么选用阿里云？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#步骤"><span class="nav-text">步骤</span></a></li></ol></div>
             
 
           </div>

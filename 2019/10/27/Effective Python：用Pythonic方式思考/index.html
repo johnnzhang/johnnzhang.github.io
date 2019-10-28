@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,Effective Python,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="立早立早" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="本系列为《Effective Python:编写高质量Python代码的59个有效方法》的读书笔记。 Python开发者用Pythonic这个词来描述具有特定风格的代码。这种风格是大家在使用Python语言进行编程并相互协作的过程中逐渐形成的习惯。">
+<meta name="keywords" content="python,Effective Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective Python：用Pythonic方式来思考">
+<meta property="og:url" content="http://yoursite.com/2019/10/27/Effective Python：用Pythonic方式思考/index.html">
+<meta property="og:site_name" content="立早立早">
+<meta property="og:description" content="本系列为《Effective Python:编写高质量Python代码的59个有效方法》的读书笔记。 Python开发者用Pythonic这个词来描述具有特定风格的代码。这种风格是大家在使用Python语言进行编程并相互协作的过程中逐渐形成的习惯。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-27T11:34:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Effective Python：用Pythonic方式来思考">
+<meta name="twitter:description" content="本系列为《Effective Python:编写高质量Python代码的59个有效方法》的读书笔记。 Python开发者用Pythonic这个词来描述具有特定风格的代码。这种风格是大家在使用Python语言进行编程并相互协作的过程中逐渐形成的习惯。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/27/Effective Python：用Pythonic方式思考/">
+
+
+
+
+
+  <title>Effective Python：用Pythonic方式来思考 | 立早立早</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">立早立早</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/Effective Python：用Pythonic方式思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/john.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="立早立早">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Effective Python：用Pythonic方式来思考</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-27T19:33:00+08:00">
+                2019-10-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-27T19:34:00+08:00">
+                2019-10-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本系列为《Effective Python:编写高质量Python代码的59个有效方法》的读书笔记。</p>
+<p>Python开发者用Pythonic这个词来描述具有特定风格的代码。这种风格是大家在使用Python语言进行编程并相互协作的过程中逐渐形成的习惯。</p>
+<a id="more"></a>
+
+<h2 id="1-确认自已所用的Python版本"><a href="#1-确认自已所用的Python版本" class="headerlink" title="1. 确认自已所用的Python版本"></a>1. 确认自已所用的Python版本</h2><p>Python通常使用的有Python2 和 Python3两个版本，其中Python2的功能开发已经冻结，即将在2020年1月1日正式“退休”，因此建议使用Python3来开发下一个Python项目。</p>
+<h3 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br></pre></td></tr></table></figure>
+
+<pre><code>Python 3.7.4</code></pre><h3 id="程序内部"><a href="#程序内部" class="headerlink" title="程序内部"></a>程序内部</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">print(sys.version_info)</span><br><span class="line">print(sys.version)</span><br></pre></td></tr></table></figure>
+
+<pre><code>sys.version_info(major=3, minor=7, micro=4, releaselevel=&apos;final&apos;, serial=0)
+3.7.4 (tags/v3.7.4:e09359112e, Jul  8 2019, 20:34:20) [MSC v.1916 64 bit (AMD64)]</code></pre><h2 id="2-遵循PEP-8风格指南"><a href="#2-遵循PEP-8风格指南" class="headerlink" title="2. 遵循PEP 8风格指南"></a>2. 遵循PEP 8风格指南</h2><p>PEP8 即 Python Enhancement Proposal #8 (8号Python增强提案)，是针对Python代码格式而编订的风格指南，用以指导如何撰写清晰的Python代码。PEP8会随着Python语言持续更新，详细见<a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="noopener">https://www.python.org/dev/peps/pep-0008/</a></p>
+<h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><ul>
+<li>函数、变量即属性用小写字母拼写，各单词间使用下划线相连，例如lowercase_underscore</li>
+<li>受保护的实例属性，应以单个下划线开头，例如， _leading_underscore</li>
+<li>私有的实例属性，应该以两个下划线开头，例如，__double_leading_underscore</li>
+<li>类与异常，应该以每个单词首字母均大写的形式来命名， 例如，CapitalizedWord</li>
+<li>模块级别的常量，应全部采用大写字母来拼写，例如，ALL_CAPS</li>
+<li>类中的实例方法（instance method），首个参数名应命名为self，以表示该类自身</li>
+<li>类方法（class method）首个参数应命名为cls</li>
+</ul>
+<h3 id="表达式和语句"><a href="#表达式和语句" class="headerlink" title="表达式和语句"></a>表达式和语句</h3><ul>
+<li>采用内联形式的否定词，例如，应为if a is not b 而不是 if not a is b</li>
+<li>检查some为[]或’’等空值，应使用if some 或if not some，而不是if len(some) == 0。Python会将空值评估为False，非空值评估为True</li>
+<li>if，for，while及except等复合语句应分成多行来书写</li>
+<li>import语句总是放在文件开头，以标准库模块、第三方模块、自用模块进行排序</li>
+<li>引入模块，应总是使用绝对路径，例如 from bar import boo，而不是直接import boo</li>
+<li>如果一定要以相对名称使用import语句，明确标注：from . import foo</li>
+</ul>
+<h2 id="3-区别bytes、str与unicode"><a href="#3-区别bytes、str与unicode" class="headerlink" title="3. 区别bytes、str与unicode"></a>3. 区别bytes、str与unicode</h2><p>如果对unicode等字符代码或utf-8,utf-16等字符编码不清楚的，可以参考下述内容：</p>
+<ul>
+<li><a href="https://www.zhihu.com/question/274104168/answer/374283698" target="_blank" rel="noopener">Unicode和utf8的关系是什么？</a></li>
+<li><a href="https://blog.csdn.net/qq_36761831/article/details/82291166" target="_blank" rel="noopener">Unicode与UTF-8的区别</a></li>
+<li><a href="https://blog.csdn.net/weixin_34318272/article/details/89796055" target="_blank" rel="noopener">计算机内存和文件中的UNICODE字符</a></li>
+</ul>
+<h3 id="Python3-和-Python2-的区别"><a href="#Python3-和-Python2-的区别" class="headerlink" title="Python3 和 Python2 的区别"></a>Python3 和 Python2 的区别</h3><ul>
+<li>Python3 中：<strong>byte</strong> 表示包含原始字节的8位值，<strong>str</strong> 表示包含unicode字符</li>
+<li>Python2 中：<strong>str</strong> 表示包含原始字节的8位值， <strong>unicode</strong> 表示包含unicode字符</li>
+</ul>
+<h3 id="encode-和-decode"><a href="#encode-和-decode" class="headerlink" title="encode 和 decode"></a>encode 和 decode</h3><p>Python3的str实例和Python2的unicode实例都没有和特定的二进制编码形式相关联。要将Unicode字符保存为二进制数据，须使用encode方法；将二进制数据转换成unicode字符，则必须使用decode方法。</p>
+<h3 id="良好实践"><a href="#良好实践" class="headerlink" title="良好实践"></a>良好实践</h3><ul>
+<li><p>编写Python程时，要把编码和解码操作放在逻辑最外层来做。程序的核心部分使用Unicode字符类型（即Python3中的str和Python2中的unicode），且不要对字符编码做任何假设。</p>
+</li>
+<li><p>在开发中，通常需要处理原始字节的8位值或者Unicode字符，需要编写两个辅助函数（helper）函数来实现两种情况的转换。</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Python3</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_str</span><span class="params">(bytes_or_str)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> isinstance(bytes_or_str, bytes):</span><br><span class="line">        value = bytes_or_str.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        value = bytes_or_str</span><br><span class="line">    <span class="keyword">return</span> value <span class="comment"># instance of str</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Python3</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_bytes</span><span class="params">(bytes_or_str)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> isinstance(bytes_or_str, str):</span><br><span class="line">        value = bytes_or_str.encode(<span class="string">'utf-8'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        value = bytes_or_str</span><br><span class="line">    <span class="keyword">return</span> value <span class="comment"># instance of bytes</span></span><br></pre></td></tr></table></figure>
+
+<p>  Python2中也可以编写同样功能函数，只不过对应类型变换位str和unicode</p>
+</li>
+</ul>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
+<li><p>在Python2中，如果str只包含7位ASCII字符，则unicode和str似乎成为同一类型：</p>
+<ul>
+<li>可以用 + 将 str 和 unicode 进行连接</li>
+<li>可用 == 和 != 在str实例和unicode实列之间比较</li>
+<li>在格式字符串中，可以用’%s’等形式来代表unicode实列</li>
+</ul>
+<p>但在Python3中，bytes 和 str 绝不等价，即使是空字符串，所以在传入字符序列是必须注意类型</p>
+</li>
+<li><p>在Python3中，通过内置open函数获取文件句柄，该句柄会默认采用 utf-8 编码格式来操作文件，而在Python2中文件操作则默认采用二进制形式。</p>
+<p>下面方法在Python2中可以正常运行，但在Python3中会报错。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'random.bin'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(os.urandom(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-3-090c1279f984&gt; in &lt;module&gt;
+    2 
+    3 with open(&apos;random.bin&apos;, &apos;w&apos;) as f:
+----&gt; 4     f.write(os.urandom(10))
+
+TypeError: write() argument must be str, not bytes</code></pre><p>这是因为Python3在open函数中添加了encoding参数，改参数默认值为’utf-8’。因此在文件句柄上的read和write操作则必须传入为unicode字符的str实例，而不能是bytes实例。<br>为解决这个问题，可使用二进制写入模式（’wb’）来开启待操作文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'random.bin'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(os.urandom(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+
+<p>从文件中读取也有这种问题，是用’rb’模式打开文件即可。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/Effective-Python/" rel="tag"># Effective Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/19/python数据分析从入门到放弃--numpy基础--ndarray/" rel="next" title="python数据分析从入门到放弃：numpy基础--ndarray">
+                <i class="fa fa-chevron-left"></i> python数据分析从入门到放弃：numpy基础--ndarray
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/john.png" alt="John Zhang">
+            
+              <p class="site-author-name" itemprop="name">John Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-确认自已所用的Python版本"><span class="nav-text">1. 确认自已所用的Python版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行"><span class="nav-text">命令行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序内部"><span class="nav-text">程序内部</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-遵循PEP-8风格指南"><span class="nav-text">2. 遵循PEP 8风格指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命名"><span class="nav-text">命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表达式和语句"><span class="nav-text">表达式和语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-区别bytes、str与unicode"><span class="nav-text">3. 区别bytes、str与unicode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python3-和-Python2-的区别"><span class="nav-text">Python3 和 Python2 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#encode-和-decode"><span class="nav-text">encode 和 decode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#良好实践"><span class="nav-text">良好实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-text">注意</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+      
+      
+      </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Zhang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
